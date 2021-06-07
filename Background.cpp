@@ -22,13 +22,13 @@ void Background::remove() {
 		}
 		if (count == 20)
 		{
-			moveDown(i);
+			cleanLine(i);
 		}
 	}
 }
 
 // 从某行开始 上面往下一行下落
-void Background::moveDown(int& line) {
+void Background::cleanLine(int& line) {
 	// 如果是第0行 即最上面一行满了 将第0行置空
 	if (line == 0)
 	{
@@ -62,7 +62,7 @@ void Background::shapeStop() {
 			}
 		}
 	}
-	// 获取下一个形状
+	// 获取下一个形状 TODO 创建一个新的形状放在next中
 	delete shapeNow;
 	shapeNow = shapeNext;
 	shapeNext = nullptr;
@@ -99,4 +99,37 @@ int** Background::backgroundNow() {
 	}
 
 	return temp;
+}
+
+// 玩家操作方法
+bool Background::moveDown() {
+	// 判断当前指针是否存在
+	if (shapeNow)
+	{
+		return shapeNow->moveDown(*this);
+	}
+}
+
+bool Background::moveRight() {
+	// 判断当前指针是否存在
+	if (shapeNow)
+	{
+		return shapeNow->moveRight(*this);
+	}
+}
+
+bool Background::moveLeft() {
+	// 判断当前指针是否存在
+	if (shapeNow)
+	{
+		return shapeNow->moveLeft(*this);
+	}
+}
+
+bool Background::changeDirection() {
+	// 判断当前指针是否存在
+	if (shapeNow)
+	{
+		return shapeNow->changeDirection(*this);
+	}
 }

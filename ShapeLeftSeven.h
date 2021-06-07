@@ -9,7 +9,6 @@ class ShapeLeftSeven : public Shape
 {
 public:
 	ShapeLeftSeven();
-	bool changeDirection(Background& background);
 };
 
 

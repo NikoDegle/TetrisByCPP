@@ -11,29 +11,34 @@ void fpsControl();	// 模拟屏幕刷新控制
 
 int main() {
 	Background background;
-	ShapeLeftSeven shapeLeftSeven;
-	background.shapeNow = &shapeLeftSeven;
+	background.shapeNow = new ShapeLeftSeven;
+	background.shapeNext = new ShapeLeftSeven;
 
 	print(background.backgroundNow(), HEIGHT, WEIGHT, true);
 	// 变换状态
-	background.shapeNow->changeDirection(background);
+	background.changeDirection();
 	print(background.backgroundNow(), HEIGHT, WEIGHT, true);
 	// 左移三格
 	for (int i = 0; i < 3; i++)
 	{
-		background.shapeNow->moveLeft(background);
+		background.moveLeft();
 		print(background.backgroundNow(), HEIGHT, WEIGHT, true);
 	}
 	// 右移2格
 	for (int i = 0; i < 2; i++)
 	{
-		background.shapeNow->moveRight(background);
+		background.moveRight();
 		print(background.backgroundNow(), HEIGHT, WEIGHT, true);
 	}
 	// 下移一格
 	for (int i = 0; i < 20; i++)
 	{
-		background.shapeNow->moveDown(background);
+		if (!background.moveDown())
+		{
+			background.shapeStop();
+			cout << "到底了!" << endl;
+			print(background.backgroundNow(), HEIGHT, WEIGHT, true);
+		}
 		print(background.backgroundNow(), HEIGHT, WEIGHT, true);
 	}
 	return 0;

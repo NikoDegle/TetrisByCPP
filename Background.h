@@ -20,9 +20,15 @@ public:
 
 	Background();
 	void remove();
-	void moveDown(int& line);
+	void cleanLine(int& line);
 	void shapeStop();	// 当前图形停止并转换为背景中的实体
 	int** backgroundNow();	// 返回当前背景与运动中的图形样子
+
+	// 玩家操作方法
+	bool moveDown();
+	bool moveLeft();
+	bool moveRight();
+	bool changeDirection();
 };
 
 #endif // !BACKGROUND_H
