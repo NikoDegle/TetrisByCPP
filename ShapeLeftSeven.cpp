@@ -1,4 +1,5 @@
 #include "ShapeLeftSeven.h"
+#include "Background.h"
 
 // 初始化图形7
 ShapeLeftSeven::ShapeLeftSeven() {
@@ -9,8 +10,8 @@ ShapeLeftSeven::ShapeLeftSeven() {
 		}
 	}
 	body[1][1] = body[1][2] = body[2][2] = body[3][2] = 1;
-	this->positionX = 2;	// 当该方块出现的时候在从左往右第三格，顶部
-	this->positionY = 0;
+	this->positionX = 4;	// 当该方块出现的时候在从左往右第三格，顶部
+	this->positionY = -1;
 }
 
 // 将方块顺时针旋转90度 将数据存入temp中 检查是否被阻挡

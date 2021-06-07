@@ -1,10 +1,13 @@
 #pragma once
+
 #ifndef SHAPE_H
 #define SHAPE_H
 
 #define SHAPE_HEIGHT 4
 #define SHAPE_WEIGHT 4
-#include "Background.h"
+
+// 不完全数据类型
+class Background;
 
 class Shape
 {

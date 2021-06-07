@@ -1,4 +1,5 @@
 #include "Shape.h"
+#include "Background.h"
 
 
 // 向下移动方法 如果能够向下移动则返回true
@@ -35,7 +36,7 @@ bool Shape::moveLeft(Background& background) {
 			if (body[i][j])
 			{
 				// 检测该行左边是否为墙壁 或者有实体
-				if ((positionX + j - 1 <= 0) ||
+				if ((positionX + j - 1 < 0) ||
 					(background.content[positionY + i][positionX + j - 1]))
 				{
 					return false;

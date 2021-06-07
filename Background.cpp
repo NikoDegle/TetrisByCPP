@@ -1,7 +1,13 @@
 #include "Background.h"
+#include "Shape.h"
 
 Background::Background() {
-	this->content[HEIGHT - 1][WEIGHT - 1] = { 0 };
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WEIGHT; j++) {
+			this->content[i][j] = 0;
+		}
+	}
 }
 
 // 检查是否有一行满的 如果有则将上面所有内容下移
@@ -38,4 +44,59 @@ void Background::moveDown(int& line) {
 			this->content[i + 1][j] = this->content[i][j];
 		}
 	}
+}
+
+// 当前图形停止并转换为背景中的实体
+void Background::shapeStop() {
+	// 先检测当前的形状是否存在
+	if (shapeNow)
+	{
+		for (int i = 0; i < SHAPE_HEIGHT; i++)
+		{
+			for (int j = 0; j < SHAPE_WEIGHT; j++)
+			{
+				if (shapeNow->body[i][j])
+				{
+					content[shapeNow->positionY + i][shapeNow->positionX + j] += shapeNow->body[i][j];
+				}
+			}
+		}
+	}
+	// 获取下一个形状
+	delete shapeNow;
+	shapeNow = shapeNext;
+	shapeNext = nullptr;
+}
+
+// 返回当前形状与相对于背景的样子
+int** Background::backgroundNow() {
+	// 初始化一个当前的背景拷贝
+	int** temp = new int*[HEIGHT];
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		temp[i] = new int[WEIGHT];
+	}
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WEIGHT; j++)
+		{
+			temp[i][j] = content[i][j];
+		}
+	}
+	// 检测当前的形状是否存在
+	if (shapeNow)
+	{
+		for (int i = 0; i < SHAPE_HEIGHT; i++)
+		{
+			for (int j = 0; j < SHAPE_WEIGHT; j++)
+			{
+				if (shapeNow->body[i][j])
+				{
+					temp[shapeNow->positionY + i][shapeNow->positionX + j] += shapeNow->body[i][j];
+				}
+			}
+		}
+	}
+
+	return temp;
 }

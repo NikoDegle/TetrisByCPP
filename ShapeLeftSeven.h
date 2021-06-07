@@ -1,8 +1,9 @@
 #pragma once
-#include "Shape.h"
-#include "Background.h"
+
 #ifndef SHAPE_LEFT_SEVEN_H
 #define SHAPE_LEFT_SEVEN_H
+
+#include "Shape.h"
 
 class ShapeLeftSeven : public Shape
 {
