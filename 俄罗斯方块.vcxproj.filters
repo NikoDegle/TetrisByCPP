@@ -27,6 +27,12 @@
     <ClInclude Include="ShapeLeftSeven.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ShapeRightSeven.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeSquare.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -40,6 +46,12 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeRightSeven.cpp">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeSquare.cpp">
+      <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

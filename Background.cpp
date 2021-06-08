@@ -90,7 +90,7 @@ int** Background::backgroundNow() {
 		{
 			for (int j = 0; j < SHAPE_WEIGHT; j++)
 			{
-				if (shapeNow->body[i][j])
+				if (shapeNow->body[i][j] && (shapeNow->positionY + i >= 0))
 				{
 					temp[shapeNow->positionY + i][shapeNow->positionX + j] += shapeNow->body[i][j];
 				}
@@ -108,6 +108,7 @@ bool Background::moveDown() {
 	{
 		return shapeNow->moveDown(*this);
 	}
+	return false;
 }
 
 bool Background::moveRight() {
@@ -116,6 +117,7 @@ bool Background::moveRight() {
 	{
 		return shapeNow->moveRight(*this);
 	}
+	return false;
 }
 
 bool Background::moveLeft() {
@@ -124,6 +126,7 @@ bool Background::moveLeft() {
 	{
 		return shapeNow->moveLeft(*this);
 	}
+	return false;
 }
 
 bool Background::changeDirection() {
@@ -132,4 +135,5 @@ bool Background::changeDirection() {
 	{
 		return shapeNow->changeDirection(*this);
 	}
+	return false;
 }

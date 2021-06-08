@@ -9,11 +9,11 @@ bool Shape::moveDown(Background& background) {
 	{
 		for (int j = SHAPE_WEIGHT - 1; j >= 0; j--)
 		{
-			// 检测该格是否为1
-			if (body[j][i])
+			// 检测该格是否为1 并且该格下方是否在背景中
+			if (body[j][i] && (positionY + j + 1 >= 0))
 			{
-				// 检测背景中该格下方是否有实体
-				if (background.content[positionY + j + 1][positionX + i])
+				// 检测该格是否靠下墙 或者 背景中该格下方是否有实体
+				if ((positionY + j + 1 > 9) || background.content[positionY + j + 1][positionX + i])
 				{
 					return false;
 				}
@@ -32,8 +32,8 @@ bool Shape::moveLeft(Background& background) {
 	for (int i = 0; i < SHAPE_HEIGHT; i++)
 	{
 		for (int j = 0; j < SHAPE_WEIGHT; j++) {
-			// 检测该块是否为1
-			if (body[i][j])
+			// 检测该块是否为1 并且该块已经进入背景
+			if (body[i][j] && (positionY + i >= 0))
 			{
 				// 检测该行左边是否为墙壁 或者有实体
 				if ((positionX + j - 1 < 0) ||
@@ -55,8 +55,8 @@ bool Shape::moveRight(Background& background) {
 	{
 		for (int j = 0; j < SHAPE_WEIGHT; j++)
 		{
-			// 检查是否撞墙或者右边有实体
-			if (body[j][i])
+			// 检查是否撞墙或者右边有实体 并且已经进入背景中
+			if (body[j][i] && (positionY + j >= 0))
 			{
 				if ((positionX + i + 1 >= 20) ||
 					(background.content[positionY + j][positionX + i + 1]))
@@ -93,7 +93,7 @@ bool Shape::changeDirection(Background& background) {
 				{
 					return false;
 				}
-				if (background.content[i + positionY][j + positionX])
+				if (background.content[i + positionY][j + positionX] && (i + positionY >= 0))
 				{
 					return false;
 				}

@@ -143,11 +143,15 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="ShapeLeftSeven.cpp" />
+    <ClCompile Include="ShapeRightSeven.cpp" />
+    <ClCompile Include="ShapeSquare.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeLeftSeven.h" />
+    <ClInclude Include="ShapeRightSeven.h" />
+    <ClInclude Include="ShapeSquare.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

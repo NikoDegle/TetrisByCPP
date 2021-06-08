@@ -1,45 +1,65 @@
 #include <iostream>
+#include <vector>
 #include <Windows.h>
 using namespace std;
 #include "Background.h"
 #include "ShapeLeftSeven.h"
+#include "ShapeRightSeven.h"
+#include "ShapeSquare.h"
 
 void printShape(Shape& shape);	// 输出形状样子
 void print(int** pointer, int height, int weight, bool needDelete);	// 输出任何矩形图像的样子
 void fpsControl();	// 模拟屏幕刷新控制
-
+void printControl(Background& background);	// 输出格式控制工具
 
 int main() {
 	Background background;
-	background.shapeNow = new ShapeLeftSeven;
-	background.shapeNext = new ShapeLeftSeven;
+	vector<Shape*> vector;
+	vector.push_back(new ShapeLeftSeven);
+	vector.push_back(new ShapeRightSeven);
+	vector.push_back(new ShapeSquare);
+	vector.push_back(new ShapeLeftSeven);
+	vector.push_back(new ShapeLeftSeven);
+	background.shapeNow = vector.back();
+	vector.pop_back();
+	background.shapeNext = vector.back();
+	vector.pop_back();
 
-	print(background.backgroundNow(), HEIGHT, WEIGHT, true);
+	printControl(background);
 	// 变换状态
-	background.changeDirection();
-	print(background.backgroundNow(), HEIGHT, WEIGHT, true);
+	if (background.changeDirection())
+	{
+		printControl(background);
+	}
 	// 左移三格
 	for (int i = 0; i < 3; i++)
 	{
-		background.moveLeft();
-		print(background.backgroundNow(), HEIGHT, WEIGHT, true);
+		if (background.moveLeft())
+		{
+			printControl(background);
+		}
 	}
 	// 右移2格
 	for (int i = 0; i < 2; i++)
 	{
-		background.moveRight();
-		print(background.backgroundNow(), HEIGHT, WEIGHT, true);
+		if (background.moveRight())
+		{
+			printControl(background);
+		}
 	}
 	// 下移一格
-	for (int i = 0; i < 20; i++)
+	while (background.shapeNow)
 	{
 		if (!background.moveDown())
 		{
 			background.shapeStop();
-			cout << "到底了!" << endl;
-			print(background.backgroundNow(), HEIGHT, WEIGHT, true);
+			if (!vector.empty())
+			{
+				background.shapeNext = vector.back();
+				vector.pop_back();
+			}	
 		}
-		print(background.backgroundNow(), HEIGHT, WEIGHT, true);
+		printControl(background);
 	}
 	return 0;
 }
@@ -99,12 +119,19 @@ void print(int** pointer, int height, int weight, bool needDelete) {
 		}
 		delete[] pointer;
 	}
-
-	// 每次输出后模拟屏幕控制
-	fpsControl();
 }
 
 void fpsControl() {
-	Sleep(1000);
+	Sleep(500);
 	system("cls");
+}
+
+void printControl(Background& background) {
+	print(background.backgroundNow(), HEIGHT, WEIGHT, true);
+	cout << "next:" << endl;
+	if (background.shapeNext)
+	{
+		printShape(*background.shapeNext);
+	}
+	fpsControl();
 }
