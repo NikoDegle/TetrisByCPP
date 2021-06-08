@@ -5,7 +5,7 @@
 
 #define SHAPE_HEIGHT 4
 #define SHAPE_WEIGHT 4
-#define START_X 4
+#define START_X 9
 #define START_Y -2
 
 // 不完全数据类型

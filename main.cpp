@@ -6,6 +6,8 @@ using namespace std;
 #include "ShapeLeftSeven.h"
 #include "ShapeRightSeven.h"
 #include "ShapeSquare.h"
+#include "ShapeBugget.h"
+#include "ShapeTrangle.h"
 
 void printShape(Shape& shape);	// 输出形状样子
 void print(int** pointer, int height, int weight, bool needDelete);	// 输出任何矩形图像的样子
@@ -18,48 +20,69 @@ int main() {
 	vector.push_back(new ShapeLeftSeven);
 	vector.push_back(new ShapeRightSeven);
 	vector.push_back(new ShapeSquare);
-	vector.push_back(new ShapeLeftSeven);
-	vector.push_back(new ShapeLeftSeven);
+	vector.push_back(new ShapeBugget);
+	vector.push_back(new ShapeTrangle);
 	background.shapeNow = vector.back();
 	vector.pop_back();
 	background.shapeNext = vector.back();
 	vector.pop_back();
 
 	printControl(background);
-	// 变换状态
-	if (background.changeDirection())
-	{
-		printControl(background);
-	}
-	// 左移三格
-	for (int i = 0; i < 3; i++)
-	{
-		if (background.moveLeft())
-		{
-			printControl(background);
-		}
-	}
-	// 右移2格
-	for (int i = 0; i < 2; i++)
-	{
-		if (background.moveRight())
-		{
-			printControl(background);
-		}
-	}
-	// 下移一格
+
+	// 当当前形状还有的时候
 	while (background.shapeNow)
 	{
-		if (!background.moveDown())
+		// 当前形状下移四格
+		for (int i = 0; i < 4; i++)
 		{
+			if (background.moveDown()) {
+				printControl(background);
+			}
+		}
+		// 变换形态四次
+		for (int i = 0; i < 4; i++)
+		{
+			if (background.changeDirection())
+			{
+				printControl(background);
+			}
+		}
+		// 当前vector剩余双数则右移四格 否则左移四格
+		if (vector.size() % 2)
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				if (background.moveRight())
+				{
+					printControl(background);
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < 4; i++)
+			{
+				if (background.moveLeft())
+				{
+					printControl(background);
+				}
+			}
+		}
+		// 图形落到底部
+		while (background.shapeNow)
+		{
+			if (background.moveDown())
+			{
+				printControl(background);
+				continue;
+			}
 			background.shapeStop();
 			if (!vector.empty())
 			{
 				background.shapeNext = vector.back();
 				vector.pop_back();
-			}	
+			}
+			break;
 		}
-		printControl(background);
 	}
 	return 0;
 }
