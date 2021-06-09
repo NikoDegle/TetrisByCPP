@@ -20,6 +20,7 @@ Background::Background() {
 	}
 	shapeNext = createNextShape();
 	shapeNow = createNextShape();
+	gameStatus = true;
 }
 
 // 检查是否有一行满的 如果有则将上面所有内容下移
@@ -70,6 +71,11 @@ Background& Background::shapeStop() {
 			{
 				if (shapeNow->body[i][j])
 				{
+					// 判断当前格是否在背景外
+					if (shapeNow->positionY + i < 0)
+					{
+						gameStatus = false;
+					}
 					content[shapeNow->positionY + i][shapeNow->positionX + j] += shapeNow->body[i][j];
 				}
 			}
@@ -171,4 +177,8 @@ Shape* Background::createNextShape() {
 	default:
 		return new ShapeSquare;
 	}
+}
+
+bool Background::getGameStatus() {
+	return gameStatus;
 }

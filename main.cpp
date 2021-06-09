@@ -20,8 +20,8 @@ int main() {
 	Background background;
 	printControl(background);
 
-	// 随机堆十个形状
-	for (int count = 0; count < 20; count++)
+	// 游戏进行至结束
+	while(background.getGameStatus())
 	{
 		// 当前形状下移四格
 		for (int i = 0; i < 3; i++)
@@ -38,26 +38,6 @@ int main() {
 				printControl(background);
 			}
 		}
-		// 当前vector剩余双数则右移四格 否则左移四格
-		if (count % 2)
-		{
-			for (int i = 0; i < 10; i++)
-			{
-				if (background.moveRight())
-				{
-					printControl(background);
-				}
-			}
-		}
-		else {
-			for (int i = 0; i < 10; i++)
-			{
-				if (background.moveLeft())
-				{
-					printControl(background);
-				}
-			}
-		}
 		// 图形落到底部
 		while (background.shapeNow)
 		{
@@ -66,7 +46,7 @@ int main() {
 				printControl(background);
 				continue;
 			}
-			background.shapeStop();
+			background.shapeStop().remove();
 			break;
 		}
 	}
