@@ -8,6 +8,7 @@ ShapeRightZed::ShapeRightZed() {
 		}
 	}
 	body[1][3] = body[1][2] = body[2][2] = body[2][1] = 1;
-	this->positionX = START_X;	// 当该方块出现的时候在从左往右第三格，顶部
+	// 方块出现的位置
+	this->positionX = START_X;
 	this->positionY = START_Y;
 }

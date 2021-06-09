@@ -8,6 +8,8 @@ using namespace std;
 #include "ShapeSquare.h"
 #include "ShapeBugget.h"
 #include "ShapeTrangle.h"
+#include "ShapeRightZed.h"
+#include "ShapeLeftZed.h"
 
 void printShape(Shape& shape);	// 输出形状样子
 void print(int** pointer, int height, int weight, bool needDelete);	// 输出任何矩形图像的样子
@@ -22,6 +24,8 @@ int main() {
 	vector.push_back(new ShapeSquare);
 	vector.push_back(new ShapeBugget);
 	vector.push_back(new ShapeTrangle);
+	vector.push_back(new ShapeRightZed);
+	vector.push_back(new ShapeLeftZed);
 	background.shapeNow = vector.back();
 	vector.pop_back();
 	background.shapeNext = vector.back();

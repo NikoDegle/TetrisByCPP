@@ -144,7 +144,9 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="ShapeBugget.cpp" />
     <ClCompile Include="ShapeLeftSeven.cpp" />
+    <ClCompile Include="ShapeLeftZed.cpp" />
     <ClCompile Include="ShapeRightSeven.cpp" />
+    <ClCompile Include="ShapeRightZed.cpp" />
     <ClCompile Include="ShapeSquare.cpp" />
     <ClCompile Include="ShapeTrangle.cpp" />
   </ItemGroup>
@@ -153,7 +155,9 @@
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeBugget.h" />
     <ClInclude Include="ShapeLeftSeven.h" />
+    <ClInclude Include="ShapeLeftZed.h" />
     <ClInclude Include="ShapeRightSeven.h" />
+    <ClInclude Include="ShapeRightZed.h" />
     <ClInclude Include="ShapeSquare.h" />
     <ClInclude Include="ShapeTrangle.h" />
   </ItemGroup>

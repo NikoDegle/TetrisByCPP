@@ -39,6 +39,12 @@
     <ClInclude Include="ShapeTrangle.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ShapeLeftZed.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeRightZed.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp">
@@ -63,6 +69,12 @@
       <Filter>源文件\class</Filter>
     </ClCompile>
     <ClCompile Include="ShapeTrangle.cpp">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeLeftZed.cpp">
+      <Filter>源文件\class</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeRightZed.cpp">
       <Filter>源文件\class</Filter>
     </ClCompile>
   </ItemGroup>
