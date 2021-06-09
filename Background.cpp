@@ -1,5 +1,15 @@
+#include <stdlib.h>
+#include <time.h>
+
 #include "Background.h"
 #include "Shape.h"
+#include "ShapeBugget.h"
+#include "ShapeLeftSeven.h"
+#include "ShapeLeftZed.h"
+#include "ShapeRightSeven.h"
+#include "ShapeRightZed.h"
+#include "ShapeSquare.h"
+#include "ShapeTrangle.h"
 
 Background::Background() {
 	for (int i = 0; i < HEIGHT; i++)
@@ -8,10 +18,12 @@ Background::Background() {
 			this->content[i][j] = 0;
 		}
 	}
+	shapeNext = createNextShape();
+	shapeNow = createNextShape();
 }
 
 // 检查是否有一行满的 如果有则将上面所有内容下移
-void Background::remove() {
+Background& Background::remove() {
 	// 循环方块并判断
 	for (int i = 0; i < HEIGHT; i++)
 	{
@@ -25,6 +37,7 @@ void Background::remove() {
 			cleanLine(i);
 		}
 	}
+	return *this;
 }
 
 // 从某行开始 上面往下一行下落
@@ -47,7 +60,7 @@ void Background::cleanLine(int& line) {
 }
 
 // 当前图形停止并转换为背景中的实体
-void Background::shapeStop() {
+Background& Background::shapeStop() {
 	// 先检测当前的形状是否存在
 	if (shapeNow)
 	{
@@ -62,10 +75,11 @@ void Background::shapeStop() {
 			}
 		}
 	}
-	// 获取下一个形状 TODO 创建一个新的形状放在next中
+	// 获取下一个形状
 	delete shapeNow;
 	shapeNow = shapeNext;
-	shapeNext = nullptr;
+	shapeNext = createNextShape();
+	return *this;
 }
 
 // 返回当前形状与相对于背景的样子
@@ -136,4 +150,25 @@ bool Background::changeDirection() {
 		return shapeNow->changeDirection(*this);
 	}
 	return false;
+}
+
+/*
+	根据生成的随机数取余7 得到的余数生成对应的形状
+	reutrn 生成的形状指针
+*/
+Shape* Background::createNextShape() {
+	srand((unsigned int)(time(NULL)));
+	int ShapeType = rand() % 7;
+	switch (ShapeType)
+	{
+	case 0:	return new ShapeBugget;
+	case 1: return new ShapeLeftSeven;
+	case 2: return new ShapeLeftZed;
+	case 3: return new ShapeRightSeven;
+	case 4: return new ShapeRightZed;
+	case 5: return new ShapeSquare;
+	case 6: return new ShapeTrangle;
+	default:
+		return new ShapeSquare;
+	}
 }

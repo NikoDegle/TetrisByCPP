@@ -51,9 +51,9 @@ bool Shape::moveLeft(Background& background) {
 
 // 右移方法 如果能够移动返回true
 bool Shape::moveRight(Background& background) {
-	for (int i = SHAPE_HEIGHT - 1; i >= 0; i--)
+	for (int i = SHAPE_WEIGHT - 1; i >= 0; i--)
 	{
-		for (int j = 0; j < SHAPE_WEIGHT; j++)
+		for (int j = 0; j < SHAPE_HEIGHT; j++)
 		{
 			// 检查是否撞墙或者右边有实体 并且已经进入背景中
 			if (body[j][i] && (positionY + j >= 0))

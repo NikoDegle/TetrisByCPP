@@ -11,6 +11,13 @@
 
 // 不完全数据类型
 class Shape;
+class ShapeBugget;
+class ShapeLeftSeven;
+class ShapeRightSeven;
+class ShapeLeftZed;
+class ShapeRightZed;
+class ShapeSquare;
+class ShapeTrangle;
 
 class Background {
 public:
@@ -19,10 +26,12 @@ public:
 	Shape* shapeNext;	// 下一个要操作的图形
 
 	Background();
-	void remove();
+	Background& remove();
 	void cleanLine(int& line);
-	void shapeStop();	// 当前图形停止并转换为背景中的实体
+	Background& shapeStop();	// 当前图形停止并转换为背景中的实体
 	int** backgroundNow();	// 返回当前背景与运动中的图形样子
+	Shape* createNextShape();	// 使用随机数创建下一个形状
+
 
 	// 玩家操作方法
 	bool moveDown();

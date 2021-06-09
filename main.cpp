@@ -18,33 +18,20 @@ void printControl(Background& background);	// 输出格式控制工具
 
 int main() {
 	Background background;
-	vector<Shape*> vector;
-	vector.push_back(new ShapeLeftSeven);
-	vector.push_back(new ShapeRightSeven);
-	vector.push_back(new ShapeSquare);
-	vector.push_back(new ShapeBugget);
-	vector.push_back(new ShapeTrangle);
-	vector.push_back(new ShapeRightZed);
-	vector.push_back(new ShapeLeftZed);
-	background.shapeNow = vector.back();
-	vector.pop_back();
-	background.shapeNext = vector.back();
-	vector.pop_back();
-
 	printControl(background);
 
-	// 当当前形状还有的时候
-	while (background.shapeNow)
+	// 随机堆十个形状
+	for (int count = 0; count < 20; count++)
 	{
 		// 当前形状下移四格
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			if (background.moveDown()) {
 				printControl(background);
 			}
 		}
 		// 变换形态四次
-		for (int i = 0; i < 4; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			if (background.changeDirection())
 			{
@@ -52,9 +39,9 @@ int main() {
 			}
 		}
 		// 当前vector剩余双数则右移四格 否则左移四格
-		if (vector.size() % 2)
+		if (count % 2)
 		{
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				if (background.moveRight())
 				{
@@ -63,7 +50,7 @@ int main() {
 			}
 		}
 		else {
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				if (background.moveLeft())
 				{
@@ -80,11 +67,6 @@ int main() {
 				continue;
 			}
 			background.shapeStop();
-			if (!vector.empty())
-			{
-				background.shapeNext = vector.back();
-				vector.pop_back();
-			}
 			break;
 		}
 	}
@@ -149,7 +131,7 @@ void print(int** pointer, int height, int weight, bool needDelete) {
 }
 
 void fpsControl() {
-	Sleep(500);
+	Sleep(100);
 	system("cls");
 }
 
