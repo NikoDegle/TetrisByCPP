@@ -23,8 +23,23 @@ Background::Background() {
 	gameStatus = true;
 }
 
+Background::~Background() {
+	if (shapeNext)
+	{
+		delete shapeNext;
+		shapeNext = nullptr;
+	}
+	if (shapeNow)
+	{
+		delete shapeNow;
+		shapeNow = nullptr;
+	}
+}
+
 // 检查是否有一行满的 如果有则将上面所有内容下移
-Background& Background::remove() {
+int Background::remove() {
+	// 消除的行数
+	int lineNumber = 0;
 	// 循环方块并判断
 	for (int i = 0; i < HEIGHT; i++)
 	{
@@ -35,10 +50,11 @@ Background& Background::remove() {
 		}
 		if (count == 20)
 		{
+			lineNumber += 1;
 			cleanLine(i);
 		}
 	}
-	return *this;
+	return lineNumber;
 }
 
 // 从某行开始 上面往下一行下落

@@ -27,7 +27,8 @@ public:
 	bool gameStatus;	// 当前游戏状态 开始置为true 结束置为false
 
 	Background();
-	Background& remove();	// 检查背景中的实体是否有一行为满
+	~Background();
+	int remove();	// 检查背景中的实体是否有一行为满
 	void cleanLine(int& line);	// 从上往下覆盖满的一行
 	Background& shapeStop();	// 当前图形停止并转换为背景中的实体
 	int** backgroundNow();	// 返回当前背景与运动中的图形样子
