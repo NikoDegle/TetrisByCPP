@@ -4,6 +4,7 @@
 #define GAME_CONTROLLER_H
 
 class Background;
+class Shape;
 
 /*
 * 游戏控制器类 用于控制游戏进程
@@ -19,9 +20,14 @@ public:
 	// 获取游戏分数方法
 	int getScore();
 	// 游戏开始方法
-	bool gameStart();
+	void gameStart();
 	// 游戏结束方法
-	bool gameEnd();
+	void gameEnd();
+	// 是否再来一次
+	bool retry();
+
+	static void print(int** pointer, int height, int weight, bool needDelete);	// 背景输出方法
+	static void printShape(Shape& shape);	// 图形输出方法
 
 private:
 	// 需要放入游戏背景
@@ -30,8 +36,6 @@ private:
 	int score;
 	// 方块自动下落速度
 	long moveDownTime;
-	// 线程锁
-	mutex* m;
 
 
 	// 自动下落计时方法

@@ -10,6 +10,7 @@ using namespace std;
 #include "ShapeTrangle.h"
 #include "ShapeRightZed.h"
 #include "ShapeLeftZed.h"
+#include "GameController.h"
 
 void printShape(Shape& shape);	// 输出形状样子
 void print(int** pointer, int height, int weight, bool needDelete);	// 输出任何矩形图像的样子
@@ -17,6 +18,15 @@ void fpsControl();	// 模拟屏幕刷新控制
 void printControl(Background& background);	// 输出格式控制工具
 
 int main() {
+	GameController gameController;
+	gameController.gameStart();
+	return 0;
+}
+
+/*
+* 过时的测试方法
+*/
+int main_1() {
 	Background background;
 	printControl(background);
 
